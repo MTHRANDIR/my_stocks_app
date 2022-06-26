@@ -1,0 +1,17 @@
+datetime 
+investpy 
+pandas
+pandas_datareader
+plotly
+plotly.express
+requests
+beautifulsoup4 
+Riskfolio-Lib
+numpy
+scipy
+flask
+flask_login
+flask_wtf
+WTForms
+flask_sqlalchemy
+gunicorn

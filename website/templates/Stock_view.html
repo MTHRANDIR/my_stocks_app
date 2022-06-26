@@ -1,0 +1,68 @@
+{% extends "base.html" %} {% block title %}Stock view{% endblock %} {% block
+content %}
+
+
+<br />
+<h2 align="center">View historical stock data</h2>
+<br />
+
+<div class="corpo" id="corpo">
+  <div class="formulario" id="formulario">
+    <form method="POST" style="width:250px;">
+
+      <div class="select_portfolio10">
+        <label for="select_stock">Select stock</label>
+        <select name="select_stock" id="select_stock" class="selectpicker">
+          {% for select_stock in ['ENGI4','PETR4'] %}
+          <option value={{ select_stock }}> {{ select_stock }} </option>
+          {% endfor %}
+        </select>
+        <br />
+      </div>
+
+      <div class="select_country" align="center" style="display: inline">
+        <label for="select_country">select country</label>
+        <select name="select_country" id="select_country" class="selectpicker">
+          {% for country in ['brazil','united states'] %}
+          <option value={{ country }}> {{ country }} </option>
+          {% endfor %}
+        </select>
+        <br />
+      </div>
+
+      <div class="select_interval" align="center" style="display: inline">
+        <label for="select_interval">Interval</label>
+        <select name="select_interval" id="select_interval" class="selectpicker">
+          {% for interval in ['Daily', 'Weekly', 'Monthly'] %}
+          <option value={{ interval }}> {{ interval }} </option>
+          {% endfor %}
+        </select>
+        <br />
+      </div>
+
+      <div class="date_form">
+        <label for="from_date">from date</label>
+        <input type="date" class="date_form_input" id="from_date" name="from_date" placeholder="from_date" />
+      </div>
+
+      <div class="date_form">
+        <label for="to_date">to date</label>
+        <input type="date" class="date_form_input" id="to_date" name="to_date" placeholder="to_date" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+  </div>
+  <div id="chart" class="chart">
+  </div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+  var graphs = {{ graphJSON | safe}};
+  Plotly.plot('chart', graphs, {});        
+</script>
+
+
+{% endblock %}

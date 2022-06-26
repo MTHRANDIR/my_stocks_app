@@ -1,0 +1,132 @@
+{% extends "base.html" %} {% block title %}Create portfolio{% endblock %} {% block
+content %}
+
+
+  <div class="container">
+   <br />
+   <h2 align="center">Python Flask Multiple Select option using Bootstrap Select Plugin and Jquery Ajax Mysqli database</h2>
+   <br />
+   <div class="col-md-4" align="center"">
+    <form method="post" id="multiple_select_form">
+     <select name="portfolio" id="portfolio" class="selectpicker">
+       {% for portfolio in user.portfolio %}
+         <option value={{ portfolio.name }}> {{ portfolio.name }} </option>
+       {% endfor %}
+     </select>
+     <br /><br />
+     <input type="hidden" name="hidden_skills" id="hidden_skills" />
+     <input type="submit" name="submit" class="btn btn-info" value="Submit" />
+    </form>
+    <br />
+   </div>
+  </div>
+
+
+
+<form method="POST">
+  <h3 align="center">Portfolio</h3>
+  <ul class="list-group list-group-flush" id="portfolio">
+
+  {% for portfolio in user.portfolio %}
+  <li class="list-group-item">
+    {{ portfolio.name }}
+    <button type="button" class="close" onClick="deletePortfolio({{ portfolio.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+
+  <div align="center">
+    <input name="name" id="name" class="add-portfolio"/>
+    <br />
+  </div>
+  <h3 align="center">Add new stock</h3>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar2"
+        navbar-text = "Buy/sell"
+      >
+        <span class=".navbar-dark .navbar-toggler-icon"></span>
+
+      </button>
+      <div class="collapse navbar-collapse" id="navbar2">
+        <div class="navbar-nav">
+
+
+
+      <div class="add-stock">
+        <label for="country">Country</label>
+        <input
+          type="text"
+          class="form-control"
+          id="country"
+          name="country"
+          placeholder="Enter the country name"
+        />
+      </div>
+      <div class="add-stock">
+        <label for="ticker">Ticker</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ticker"
+          name="ticker"
+          placeholder="Enter the stock ticker"
+        />
+      </div>
+      <div class="add-stock">
+        <label for="shares">shares</label>
+        <input
+          type="number"
+          class="form-control"
+          id="shares"
+          name="shares"
+          placeholder="Enter the number of shares"
+        />
+      </div>
+      <div class="add-stock">
+        <label for="date">buy date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="date"
+          name="date"
+          placeholder="date"
+        />
+      </div>
+      <div class="add-stock">
+        <label for="price">Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          name="price"
+          placeholder="Enter the price per share"
+        />
+      </div>
+      <br />
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+      </div>
+      </div>
+  </nav>
+
+
+</form>
+
+<h1 align="center">Stocks</h1>
+<ul class="list-group list-group-flush" id="portfolio">
+  {% if user.portfolio[0] %}
+    {% for stock in user.portfolio[0].stocks %}
+    <li class="list-group-item">
+      {{ stock.ticker }},{{ stock.shares }}
+    </li>
+    {% endfor %}
+  {% endif %}
+</ul>
+
+
+{% endblock %}

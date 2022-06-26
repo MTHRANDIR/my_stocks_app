@@ -1,0 +1,40 @@
+.selectpicker {
+    width: 250px;
+    color: black;
+    display: inline;
+
+}
+
+h2 {
+    color: rgb(4, 0, 255);
+
+}
+
+.date_form_input {
+    width: 250px;
+    color: black;
+    display: inline;
+
+}
+
+.corpo {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+
+}
+
+.formulario {
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    padding-top: -80px;
+
+}
+
+.chart {
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+
+}

@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block title %}Create portfolio{% endblock %} {% block
+content %}
+
+
+<br />
+<h2 align="center">Create and manage your portfolio</h2>
+<br />
+<form method="POST">
+
+  <div class="select_portfolio" align="center"">
+    <label for=" select_portfolio">Select portfolio</label>
+    <select name="portfolio2" id="portfolio2" class="selectpicker">
+      {% for portfolio in user.portfolio %}
+      <option value={{ portfolio.name }}> {{ portfolio.name }} </option>
+      {% endfor %}
+    </select>
+    <br />
+  </div>
+
+  <div align="center">
+    <label for="create_portfolio">Create new portfolio</label>
+    <input name="name" id="name" class="add-portfolio" />
+    <br />
+  </div>
+  <h3 align="center">Add new stock</h3>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar2" navbar-text="Buy/sell">
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+    <div class="collapse navbar-collapse" id="navbar2">
+      <div class="navbar-nav">
+
+
+
+        <div class="add-stock">
+          <label for="country" style="color:white">Country</label>
+          <input type="text" class="form-control" id="country" name="country" placeholder="Enter the country name" />
+        </div>
+        <div class="add-stock">
+          <label for="ticker" style="color:white">Ticker</label>
+          <input type="text" class="form-control" id="ticker" name="ticker" placeholder="Enter the stock ticker" />
+        </div>
+        <div class="add-stock">
+          <label for="shares" style="color:white">shares</label>
+          <input type="number" class="form-control" id="shares" name="shares"
+            placeholder="Enter the number of shares" />
+        </div>
+        <div class="add-stock">
+          <label for="date" style="color:white">buy date</label>
+          <input type="date" class="form-control" id="date" name="date" placeholder="date" />
+        </div>
+        <div class="add-stock">
+          <label for="price" style="color:white">Price</label>
+          <input type="number" class="form-control" id="price" name="price" placeholder="Enter the price per share" />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </div>
+    </div>
+  </nav>
+
+
+</form>
+
+<h3 align="center">Stocks</h3>
+<ul class="list-group list-group-flush" id="portfolio">
+
+
+  {% if user.portfolio[0] %}
+  {% if user.selected_portifolio %}
+  {% for stock in user.portfolio[user.selected_portifolio].stocks %}
+  <li class="list-group-item">
+    {{ stock.ticker }},{{ stock.shares }}
+  </li>
+  {% endfor %}
+  {% else %}
+  {% for stock in user.portfolio[0].stocks %}
+  <li class="list-group-item">
+    {{ stock.ticker }},{{ stock.shares }}
+  </li>
+  {% endfor %}
+  {% endif %}
+  {% endif %}
+
+
+</ul>
+
+
+{% endblock %}

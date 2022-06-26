@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block title %}Portfolio performance{% endblock %} {% block
+content %}
+
+
+<br />
+<h2 align="center">My portfolio performance</h2>
+<br />
+
+<div class="corpo" id="corpo">
+    <div class="formulario" id="formulario">
+        <form method="POST" style="width:250px;">
+
+            <div class="select_portfolio" align="center"">
+            <label for=" select_portfolio">Select portfolio</label>
+                <select name="select_portifolio3" id="select_portifolio3" class="selectpicker">
+                    {% for portfolio in user.portfolio %}
+                    <option value={{ portfolio.name }}> {{ portfolio.name }} </option>
+                    {% endfor %}
+                </select>
+                <br />
+            </div>
+
+
+            <div class="select_interval" align="center" style="display: inline">
+                <label for="select_interval">Interval</label>
+                <select name="select_interval" id="select_interval" class="selectpicker">
+                    {% for interval in ['Daily', 'Weekly', 'Monthly'] %}
+                    <option value={{ interval }}> {{ interval }} </option>
+                    {% endfor %}
+                </select>
+                <br />
+            </div>
+
+            <div class="date_form">
+                <label for="from_date">from date</label>
+                <input type="date" class="date_form_input" id="from_date" name="from_date" placeholder="from_date" />
+            </div>
+
+            <div class="date_form">
+                <label for="to_date">to date</label>
+                <input type="date" class="date_form_input" id="to_date" name="to_date" placeholder="to_date" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+    <div id="chart" class="chart">
+    </div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs = {{ graphJSON | safe}};
+    Plotly.plot('chart', graphs, {});        
+</script>
+
+
+{% endblock %}

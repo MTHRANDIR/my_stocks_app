@@ -15,7 +15,6 @@ from scipy.optimize import minimize
 
 def stock_value(ticker, country, date=None):
     if date == None or date == datetime.now().strftime('%d/%m/%Y'):  # assume que é no dia de hoje
-        # shareValue =          criar condicional para horario, se aberto valor atual beaultiful soup, se fechado valor do fechamento do dia anterior
         shareValue = str(ip.stocks.get_stock_information(
             stock=ticker, country=country)['Open']).split()[1]
     else:
@@ -24,9 +23,6 @@ def stock_value(ticker, country, date=None):
 
     return shareValue
 
-
-def plot_portifolio_performance(portifolio):
-    return 1
 
 
 def stock_historical_data_plotStick(stock, country, from_date, to_date, interval):
